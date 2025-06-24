@@ -1,7 +1,7 @@
 {
-  "name": "dsa_instructor",
+  "name": "shubham_chatbot",
   "version": "1.0.0",
-  "description": "dsa instructor ",
+  "description": "this_is_a_shubham_chatbot",
   "main": "DSA.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
