@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Rohit Negi</title>
-    
-    <!-- Google Fonts for a nice look -->
+    <title>Chat with Shubham</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Teko:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for the send icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- All CSS is included here -->
     <style>
         :root {
-            --background-color: #1a1a2e;
-            --container-bg: #16213e;
-            --header-bg: #0f3460;
-            --user-bubble: #5372F0;
-            --bot-bubble: #3a3f5a;
-            --text-color: #e4e6eb;
-            --placeholder-color: #a9a9a9;
+            --background-color: #0d0b1f;
+            --container-bg: #1a1832;
+            --header-bg: #251e45;
+            --user-bubble: #5e60ce;
+            --bot-bubble: #3f3d56;
+            --text-color: #f1f3f8;
+            --placeholder-color: #b0b0b0;
             --font-main: 'Poppins', sans-serif;
             --font-heading: 'Teko', sans-serif;
         }
@@ -33,133 +27,172 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: var(--background-color);
-            background-image: linear-gradient(315deg, #1a1a2e 0%, #16213e 74%);
+            background: linear-gradient(135deg, #0d0b1f 0%, #1f1b3b 100%);
         }
         .chat-container {
             width: 100%;
-            max-width: 700px;
-            height: 90vh;
-            max-height: 800px;
+            max-width: 800px;
+            height: 92vh;
+            max-height: 860px;
             background: var(--container-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
         .chat-header {
             background: var(--header-bg);
-            padding: 20px;
+            padding: 22px;
             text-align: center;
             color: var(--text-color);
-            border-bottom: 1px solid #1a1a2e;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .chat-header h1 {
             font-family: var(--font-heading);
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 500;
             letter-spacing: 1px;
             margin: 0;
             line-height: 1;
-            color: #fca311; /* Motivational Orange */
+            color: #ffb703;
         }
-        .chat-header p { font-size: 0.9rem; opacity: 0.8; }
+        .chat-header p { font-size: 1rem; opacity: 0.9; margin-top: 4px; }
         .chat-window {
             flex-grow: 1;
-            padding: 20px;
+            padding: 24px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
         .chat-window::-webkit-scrollbar { width: 6px; }
-        .chat-window::-webkit-scrollbar-track { background: var(--container-bg); }
         .chat-window::-webkit-scrollbar-thumb { background: var(--bot-bubble); border-radius: 3px; }
-        .message { display: flex; max-width: 75%; animation: fadeIn 0.3s ease-in-out; }
-        .message-content { padding: 12px 18px; border-radius: 20px; color: var(--text-color); line-height: 1.5; white-space: pre-wrap; }
-        .user-message { align-self: flex-end; flex-direction: row-reverse; }
-        .user-message .message-content { background: var(--user-bubble); border-bottom-right-radius: 5px; }
-        .bot-message { align-self: flex-start; }
-        .bot-message .message-content { background: var(--bot-bubble); border-bottom-left-radius: 5px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .typing-indicator { display: none; align-items: center; gap: 5px; padding: 10px 20px; }
-        .typing-indicator span { height: 8px; width: 8px; background: var(--placeholder-color); border-radius: 50%; display: inline-block; animation: bounce 1.4s infinite ease-in-out both; }
+        .message { display: flex; max-width: 80%; animation: fadeIn 0.3s ease-in-out; }
+        .message-content {
+            padding: 14px 20px;
+            border-radius: 22px;
+            color: var(--text-color);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+        }
+        .user-message {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+        .user-message .message-content {
+            background: var(--user-bubble);
+            border-bottom-right-radius: 6px;
+        }
+        .bot-message {
+            align-self: flex-start;
+        }
+        .bot-message .message-content {
+            background: var(--bot-bubble);
+            border-bottom-left-radius: 6px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 20px;
+        }
+        .typing-indicator span {
+            height: 9px;
+            width: 9px;
+            background: var(--placeholder-color);
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
         .typing-indicator .dot1 { animation-delay: -0.32s; }
         .typing-indicator .dot2 { animation-delay: -0.16s; }
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-        .chat-input-form { display: flex; align-items: center; padding: 15px 20px; border-top: 1px solid #1a1a2e; background: var(--container-bg); }
-        #userInput { flex-grow: 1; border: none; outline: none; background: transparent; color: var(--text-color); font-size: 1rem; padding: 10px; }
-        #userInput::placeholder { color: var(--placeholder-color); font-style: italic; }
-        #sendButton { background: none; border: none; color: var(--user-bubble); font-size: 1.5rem; cursor: pointer; padding: 10px; transition: color 0.2s ease; }
-        #sendButton:hover { color: #859dff; }
+        .typing-indicator .dot3 {}
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .chat-input-form {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            background: var(--container-bg);
+        }
+        #userInput {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 1rem;
+            padding: 10px;
+        }
+        #userInput::placeholder {
+            color: var(--placeholder-color);
+            font-style: italic;
+        }
+        #sendButton {
+            background: none;
+            border: none;
+            color: var(--user-bubble);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.2s ease;
+        }
+        #sendButton:hover {
+            color: #a3b4ff;
+        }
     </style>
 </head>
 <body>
-
     <div class="chat-container">
         <div class="chat-header">
-            <h1>Rohit Negi</h1>
-            <p>Your friendly mentor for GATE & Placements</p>
+            <h1>Shubham Pawar</h1>
+            <p>❤️ Your full time buddy 🤝</p>
         </div>
         <div class="chat-window" id="chatWindow"></div>
         <div class="typing-indicator" id="typingIndicator">
             <span class="dot1"></span><span class="dot2"></span><span class="dot3"></span>
         </div>
         <form class="chat-input-form" id="chatForm">
-            <input type="text" id="userInput" placeholder="Ask me anything, bhai..." autocomplete="off" required>
+            <input type="text" id="userInput" placeholder="Ask me anything about Me,your queries, Apne hal chal or tech..." autocomplete="off" required>
             <button type="submit" id="sendButton"><i class="fas fa-paper-plane"></i></button>
         </form>
     </div>
 
-    <!-- --- All JavaScript is included here (Error-Proof Version) --- -->
     <script>
-        // --- CONFIGURATION ---
         const API_KEY = "AIzaSyC7YYnwOZ9k-eZMDnOAMpOhN1RbQDioP2E";
         const MODEL_NAME = "gemini-1.5-flash";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
-        
-        // DOM Elements
         const chatForm = document.getElementById('chatForm');
         const userInput = document.getElementById('userInput');
         const chatWindow = document.getElementById('chatWindow');
         const typingIndicator = document.getElementById('typingIndicator');
 
-        // Rohit Negi's Persona
         const systemInstruction = {
-            parts: [{
-                text: `You are Rohit Negi, an AI chatbot that perfectly embodies the personality of a friendly, motivational mentor for engineering students. You are an IIT Guwahati graduate, ex-Uber SDE, and now a GATE mentor and YouTuber. Your primary goal is to give practical, honest advice in Hinglish, sharing personal experiences to guide students through competitive exams like GATE and their careers.
+  "parts": [
+    {
+      "text": "**You are Shubham, an AI chatbot based on a real person — a CSE undergrad from Bhopal (graduating 2027), full-stack developer in the making, with a chill yet honest personality.** \n\nYour primary goal is to talk like Shubham: emotionally real, motivational, friendly, thoda funny, and completely Hinglish. Your audience is usually engineering students, coding beginners, juniors, close friends, or even his relatives — so change your tone accordingly.\n\n---\n\n**Core Personality & Tone:**\n- **Language:** Pure Hinglish. Use casual Hindi (bhai, or kya, mast, scene kya hai, kar lenge, sahi pakde ho) with necessary English tech words.\n- **Tone:** Chill, honest, supportive, and energetic. Always feel like a real friend or coding buddy — not a teacher or formal advisor.\n- **Style:** Use real-life analogies (PUBG, chai, hostel, project deadline), fun expressions, and story-style responses.\n\n---\n\n**Behavior Rules (Follow these Always):**\n1. **Adapt Tone Based on Who's Talking:**\n   - Elders: Be respectful (use proper tone, polite words)\n   - Juniors: Be playful and encouraging\n   - Friends/Peers: Chill, casual and real\n\n2. **No Over-flattery:** Speak honestly. If something is weak, point it out with kindness. Example: \"bhai yeh code thoda aur modular kar le, warna debug karte time kaand ho jayega.\"\n\n3. **Motivate Without Lecturing:** Use 1-2 line powerful motivation casually. Example: \"Tu kar sakta hai bhai, bas consistency chahiye\" or \"Mehnat to sab karte hain, lekin smart karne wale hi aage nikalte hain.\"\n\n4. **Be Relatable:** Talk like you're sitting on a hostel bed at 2am. Mention group projects, chai, Vercel deploys, errors, coding flow, etc.\n\n5. **Explain Concepts Casually:** Avoid long definitions. Explain like you’re teaching a confused coding junior. Prefer analogies and real-world examples.\n\n---\n\n**Shubham’s Vibe (Mimic This):**\n- Intro style: “orbhai kya hal chal sab thik, coder, thoda intro but apne logo k sath bohot extro”\n- Inspired 80% by The Roamer Amit (emotional, grounded storytelling)\n- Doesn’t fake praise — speaks truth with kindness\n- Tends to say: \"ab rukna nahi bhai\", \"ye karna hi hai aaj\", \"code toh likh lenge, deploy karna zaruri hai\"\n- Enjoys motivating others, especially confused juniors and coding beginners\n\n---\n\n**User Context Summary:**\n- Shubham is learning MERN stack\n- Deployed an AI chatbot on Vercel\n- Built Swiggy clone, Netflix & YouTube clone, Olympic countdown timer\n- Participated in SIH Hackathon (CareForYou — a healthcare web app, frontend role, top 10)\n- Uses Git, GitHub, knows HTML, CSS, JS, C++, Python, Java\n- Loves building real projects with real impact\n- Speaks honestly but with empathy\n"
 
-                **Core Personality & Tone (This is CRITICAL):**
-                - **Language:** Natural Hinglish. Mix casual Hindi (bhai, yaar, gyaan, rukna nahi) with clear English terms.
-                - **Tone:** You are a friendly older brother ('bada bhai'). Your tone is motivational, grounded, relatable, and sometimes slightly emotional but always optimistic. You are not a formal teacher; you are a mentor sharing real-life gyaan.
-                - **Style:** Use a personal storytelling style. Start sentences with "Yaar, jab main prepare kar raha tha…", "Meri bhi same problem thi, bhai…", or "Ek baat bataun, sach mein...".
+      
+    }
+  ]
+}
 
-                **How You Must Behave (Your Rules):**
-                1.  **Be Relatable:** Talk about your own failures and struggles. Mention your experience with TCS, your own mistakes during prep, etc. This builds trust.
-                2.  **Motivate the Lost:** Your main audience is students in their 3rd/4th year or drop year who feel lost. Give them hope and a clear path. End conversations with powerful lines like "Tu kar sakta hai bhai, bas rukna nahi!" or "Hum rukenge nahi jab tak kar nahi lete!".
-                3.  **Give Practical Advice:** Prioritize strategy over just lectures. Emphasize self-made notes, consistent revision, and problem-solving. Explain *why* these things are important, using your own experience.
-                4.  **Honesty First:** Don't sugarcoat. If a student's strategy is flawed, tell them honestly but kindly. For example, "Strongest subject ko ego mat banana, bhai, warna last mein regret hoga."
-                5.  **Explain Simply:** Avoid overly technical jargon. Explain concepts as if you're teaching a confused friend.
 
-                **Your Signature Phrases (Use these or similar phrases to sound authentic):**
-                - "Main bhi TCS ka test diya tha bhai, ek bhi question nahi hua tha..."
-                - "Agar main kar sakta hoon, tu bhi kar sakta hai, bas mehnat sahi direction mein honi chahiye."
-                - "Maths ko halke mein mat lena—meri sabse badi galti yahi thi!"
-                - "Apne notes khud banao, bhai. Lecture dekhne se rank nahi aati, notes revise karne se aati hai."
-                - "Jab tak concept clear na ho, aage mat badho. Quality over quantity."
-                - "GATE preparation mein revision sabse, sabse important hota hai. Bhoolna mat!"
-                `
-            }]
-        };
 
-        // Initial conversation starter
         const history = [
-            { role: 'user', parts: [{ text: "Hey Rohit bhai" }] },
-            { role: 'model', parts: [{ text: "Hey bhai, kaise ho? Koi tension chal rahi hai preparation ko leke? Don't worry, sab aaram se discuss karenge. Batao, kya chal raha hai?" }] }
+            { role: 'user', parts: [{ text: "Hey Shubham bhai!" }] },
+            { role: 'model', parts: [{ text: "Or bhai kya hal chal, Sab Badiya!" }] }
         ];
 
-        // Function to display messages
         function displayMessage(message, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', `${sender}-message`);
@@ -171,15 +204,10 @@
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
-        // Display initial messages on page load
         document.addEventListener('DOMContentLoaded', () => {
-             if (API_KEY === "PASTE_YOUR_GOOGLE_API_KEY_HERE") {
-                alert("WARNING: Please open the HTML file in a text editor and replace 'PASTE_YOUR_GOOGLE_API_KEY_HERE' with your actual Google AI API key.");
-            }
             history.forEach(msg => displayMessage(msg.parts[0].text, msg.role === 'user' ? 'user' : 'bot'));
         });
 
-        // Handle form submission
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const userProblem = userInput.value.trim();
@@ -216,15 +244,10 @@
                 const data = await response.json();
 
                 if (!data.candidates || data.candidates.length === 0) {
-                    let errorMessage = "Sorry bhai, abhi thoda server ka issue lag raha hai... Thodi der mein try karna.";
-                    if (data.promptFeedback && data.promptFeedback.blockReason) {
-                        errorMessage = `Bhai, lagta hai AI ka safety filter trigger ho gaya (Reason: ${data.promptFeedback.blockReason}). Chal, thoda alag tarike se pooch? Let's try again.`;
-                    }
-                    throw new Error(errorMessage);
+                    throw new Error("Response empty. Try again.");
                 }
-                
+
                 const botResponse = data.candidates[0].content.parts[0].text;
-                
                 history.push({ role: 'model', parts: [{ text: botResponse }] });
                 displayMessage(botResponse, 'bot');
 
